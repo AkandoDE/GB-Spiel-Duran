@@ -28,7 +28,7 @@ export const CONFIG = {
 
     // Game progression
     FINALE_DISTANCE: 2000,
-    DISTANCE_FACTOR: 0.15,
+    DISTANCE_FACTOR: 0.30,
 
     // Player
     MAX_LIVES: 3,

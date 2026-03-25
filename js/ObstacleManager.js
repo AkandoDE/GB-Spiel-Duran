@@ -119,11 +119,11 @@ export class ObstacleManager {
                 break;
             case OBSTACLE_TYPE.PAPER_PLANE:
                 sprite = this.assets.paperPlane;
-                y = CONFIG.GROUND_Y - 120 - Math.random() * 60;
+                y = CONFIG.GROUND_Y - 180 - Math.random() * 80;
                 break;
             case OBSTACLE_TYPE.FOOTBALL:
                 sprite = this.assets.football;
-                y = CONFIG.GROUND_Y - 100 - Math.random() * 80;
+                y = CONFIG.GROUND_Y - 170 - Math.random() * 90;
                 break;
         }
 
