@@ -12,6 +12,10 @@ export class InputHandler {
             this._fire('jump');
         }, { passive: false });
 
+        // Prevent iOS long-press context menu & callout
+        canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+        canvas.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+
         // Mouse (desktop fallback)
         canvas.addEventListener('mousedown', () => this._fire('jump'));
 

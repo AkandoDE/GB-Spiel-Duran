@@ -39,6 +39,10 @@ export class Game {
         // Canvas sizing
         this._resize();
         window.addEventListener('resize', () => this._resize());
+        // iOS Safari fires visualViewport resize when address bar shows/hides
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => this._resize());
+        }
 
         // Mark ready
         this.state = GAME_STATE.MENU;
@@ -46,8 +50,11 @@ export class Game {
 
     _resize() {
         const ratio = CONFIG.BASE_WIDTH / CONFIG.BASE_HEIGHT;
-        let w = window.innerWidth;
-        let h = window.innerHeight;
+
+        // Use visualViewport when available (iOS Safari gives the actual visible area)
+        const vp = window.visualViewport;
+        let w = vp ? vp.width : window.innerWidth;
+        let h = vp ? vp.height : window.innerHeight;
 
         if (w / h > ratio) {
             w = h * ratio;
