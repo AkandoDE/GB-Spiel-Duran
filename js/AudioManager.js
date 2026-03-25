@@ -24,7 +24,18 @@ export class AudioManager {
 
     resume() {
         this._ensure();
-        if (this.ctx.state === 'suspended') this.ctx.resume();
+        if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+        // iOS Safari unlock: play a silent buffer to kick-start audio
+        if (!this._unlocked) {
+            this._unlocked = true;
+            const buf = this.ctx.createBuffer(1, 1, this.ctx.sampleRate);
+            const src = this.ctx.createBufferSource();
+            src.buffer = buf;
+            src.connect(this.ctx.destination);
+            src.start(0);
+        }
     }
 
     toggleMute() {
